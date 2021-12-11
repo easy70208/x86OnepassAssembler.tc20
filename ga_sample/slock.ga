@@ -1,0 +1,164 @@
+			org		0x100
+_start
+			mov		bx,0x0080 	   ; dta offset adress
+			mov		dl,byte [bx]	   ; cmp option and '0'
+			cmp		dl,0x0
+			je		short &help_lock
+			mov		cx,dx
+_for_next1
+			inc		bx
+			mov		dl,byte [bx]
+			cmp		dl,0x20
+			je		short &next1
+			cmp		dl,0x2f		    ; cmp  dl and '/'
+			je		short &for_next2
+_next1
+			loop 	short &for_next1
+			jmp		near &error_lock
+
+_for_next2
+			inc		bx
+			mov		dl,byte [bx]
+			cmp		dl,'0'
+			je		short &all_off
+			cmp		dl,'1'
+			je		short &s_lock
+			cmp		dl,'2'
+			je		short &n_lock
+			cmp		dl,'3'
+			je		short &ns_lock
+			cmp		dl,'4'
+			je		short &c_lock
+			cmp		dl,'5'
+			je		short &j_cs_lock	 ;  jump out of range by 48 byte(s) error process
+			cmp		dl,'6'
+			je		short &j_nc_lock	 ;  jump out of range by 48 byte(s) error process
+			cmp		dl,'7'
+			je		short &j_all_lock	 ;  jump out of range by 48 byte(s) error process
+			jmp		near &error_lock
+_help_lock
+			mov		ah,0x9
+			mov		dx,&h_l
+			int		0x21
+			int		0x20
+_all_off
+
+			mov		ah,0x9
+			mov		dx,&a_o
+			int		0x21
+			mov		ax,0x000
+			mov		ds,ax
+			mov		bx,0x417
+			mov		dx,0x000
+			mov		word [bx],dx
+			int		0x20
+_s_lock
+			mov		ah,0x9
+			mov		dx,&s_l
+			int		0x21
+			mov		ax,0x000
+			mov		ds,ax
+			mov		bx,0x417
+			mov		dx,0x010
+			mov		word [bx],dx
+			int		0x20
+_n_lock
+			mov		ah,0x9
+			mov		dx,&n_l
+			int		0x21
+			mov		ax,0x000
+			mov		ds,ax
+			mov		bx,0x417
+			mov		dx,0x020
+			mov		word [bx],dx
+			int		0x20
+_ns_lock
+			mov		ah,0x9
+			mov		dx,&ns_l
+			int		0x21
+			mov		ax,0x000
+			mov		ds,ax
+			mov		bx,0x417
+			mov		dx,0x030
+			mov		word [bx],dx
+			int		0x20
+_j_cs_lock
+			jmp		short &cs_lock
+_j_nc_lock
+			jmp		short &nc_lock
+_j_all_lock
+			jmp		short &all_lock
+_c_lock
+			mov		ah,0x9
+			mov		dx,&c_l
+			int		0x21
+			mov		ax,0x000
+			mov		ds,ax
+			mov		bx,0x417
+			mov		dx,0x040
+			mov		word [bx],dx
+			int		0x20
+_cs_lock
+			mov		ah,0x9
+			mov		dx,&cs_l
+			int		0x21
+			mov		ax,0x000
+			mov		ds,ax
+			mov		bx,0x417
+			mov		dx,0x050
+			mov		word [bx],dx
+			int		0x20
+_nc_lock
+			mov		ah,0x9
+			mov		dx,&nc_l
+			int		0x21
+			mov		ax,0x000
+			mov		ds,ax
+			mov		bx,0x417
+			mov		dx,0x060
+			mov		word [bx],dx
+			int		0x20
+_all_lock
+			mov		ah,0x9
+			mov		dx,&all
+			int		0x21
+			mov		ax,0x000
+			mov		ds,ax
+			mov		bx,0x417
+			mov		dx,0x070
+			mov		word [bx],dx
+			int		0x20
+_error_lock
+			mov		ah,0x9
+			mov		dx,&e_l
+			int		0x21
+			int		0x20
+
+_h_l 		db		0x0a
+			ds		'goldfish superlock program (r) company, ltd,.\n\r'
+			ds		'usage slock.com /option\n\r'
+			ds		'<option>\n\r'
+			ds		'/0 all off..................  /1 scrolllock on..............\n\r'
+			ds		'/2 numlock on...............  /3 numlock and scrolllock on..\n\r'
+			ds		'/4 capslock on..............  /5 capslock and scrolllock on.\n\r'
+			ds		'/6 numlock and capslock on..  /7 all on.....................\n\r'
+			db		0x0a
+			db		'$'
+
+_e_l 		ds		'goldfish superlock program error\n\r$'
+
+_a_o 		ds		'goldfish superlock program all off\n\r$'
+
+_s_l 		ds		'goldfish superlock program scrolllock on\n\r$'
+
+_n_l 		ds		'goldfish superlock program numlock on\n\r$'
+
+_ns_l		ds		'goldfish superlock program numlock and scrolllock on\n\r$'
+
+_c_l 		ds		'goldfish superlock program capslock on\n\r$'
+
+_cs_l		ds		'goldfish superlock program capslock and scrolllock on\n\r$'
+
+_nc_l		ds		'goldfish superlock program numlock and capslock on\n\r$'
+
+_all 		ds		'goldfish superlock program numlock capslock and scrolllock on\n\r$'

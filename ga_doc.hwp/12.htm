@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제12장 l????? 명령어</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 12 장 l????? 명령어</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.1 lahf(플래그 레지스터의 하위 8비트를 ah 레지스터에 복사한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  플래그 레지스터의 하위 8비트를 ah 레지스터에 복사한다</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  lahf</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.2 lock(다음 명령어의 버스 사용권을 확보한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  다음 명령어의 버스 사용권을 확보한다</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  lock</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.3 lodsb(메모리에서 al 레지스터로 로드한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  si 레지스터로 지정한 메모리 위치의 내용로 이동시킨 후, si 레지스터는 DF 플래그의 값에 따    라 증가 또는 감소한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  lodsb</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.4 lodsw(메모리에서 ax 레지스터로 로드한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  ax 레지스터로 지정한 메모리 위치의 내용을 이동시킨 후, si 레지스터는 DF 플래그의 값에 따    라 증가 또는 감소한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  lodsw</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.5 loop(cx 레지스터를 감소시키고, 0 이 아니면 점프한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  cx 레지스터 내용을 1 감소기켜 cx 레지스터 내용이 0 이 되면 변위 위치로 점프하고, 0 아니    면 다음 명령어를 실행한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  _start</FONT>
+<P><FONT SIZE=3>  loop short &amp;start</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.6 loopnz/loopne(cx 레지스터를 감소기키고, cx 가 0이 아니고 제로 플래그가 0 이면    점프한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  cx 레지스터의 내용을 감소시켜 0 이 되고, 제로 플래그가 0이면 변위 위치로 점프하고, 그렇    지 않으면 다음 명령어를 실행한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  _start</FONT>
+<P><FONT SIZE=3>  loopnz short &amp;start</FONT>
+<P><FONT SIZE=3>  loopne short &amp;start</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.7 loopz/loope(cx 레지스터를 감소시키고, cx 레지스터가 0이고 제로 플래그가 1 이면    점프한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  cx 레지스터 내용을 감소시켜 0이 되지 않고, 제로 플래그가 1 이면 변위 위치로 점프하고, 그    렇지 않으면 다음 명령어를 실행한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>   _start</FONT>
+<P><FONT SIZE=3>  loopz short &amp;start</FONT>
+<P><FONT SIZE=3>  loope short &amp;start</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.8 lds(데이타 세그먼트 레지스터(ds)를 참조하여 데이타를 1오퍼랜드의 16 비트 레지    스터에 저장한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  데이타 세그먼트 레지스터(ds)를 참조하여 데이타를 1오퍼랜드의 16 비트 레지스터에 저장 한    다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  lds ax,far _data</FONT>
+<P><FONT SIZE=3>  lds si,far _data</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.9 les(엑스트라 세그먼트 레지스터(es)를 참조하여 데이타를 1오퍼랜드의 16 비트 레    지스터에 저장한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  엑스트라 세그먼트 레지스터(es)를 참조하여 데이타를 1오퍼랜드의 16 비트 레지스터 에         저장한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  les ax,far _data</FONT>
+<P><FONT SIZE=3>  les si,far _data</FONT>
+<BR>
+<P><FONT SIZE=3><B>  12.10 lea(2오퍼랜드의 실효 번지를 로드한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3>  [기능]</FONT>
+<P><FONT SIZE=3>  2오퍼랜드의 실효 번지를 로드한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  lea ax,near _data</FONT>
+<BR>
+<P><FONT SIZE=3>  +-- 참고 ----------------------------------------------+</FONT>
+<P><FONT SIZE=3>  | 위&#50049; 코드는 다음의 코드와 같다                       |</FONT>
+<P><FONT SIZE=3>  |                                                      |</FONT>
+<P><FONT SIZE=3>  | mov ax,&amp;data                                         |</FONT>
+<P><FONT SIZE=3>  |                                                      |</FONT>
+<P><FONT SIZE=3>  +------------------------------------------------------+</FONT>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</HTML>

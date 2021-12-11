@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제10장 i??? 명령어</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 10 장 i??? 명령어</FONT>
+<BR>
+<P><FONT SIZE=3><B>  10.1 into(오버플로우 플래그가 세트되어 있을 때에만 INT 4 를 발생시킨다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  인터럽트 4번를 발생&#44987;킨다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  into</FONT>
+<BR>
+<P><FONT SIZE=3><B>  10.2 iret(인터럽트 처리 루틴으로부터 복귀한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  인터럽트 처리 루틴에서 복귀한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  iret</FONT>
+<BR>
+<P><FONT SIZE=3><B>  10.3 int(소프트 웨어 인터럽트를 발생시킨다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  인터럽트 백터의 번지를 참조하여 소프트웨어 인터럽트를 발생시킨다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  int 1</FONT>
+<P><FONT SIZE=3>  int 3</FONT>
+<P><FONT SIZE=3>  int !MSDOSint</FONT>
+<P><FONT SIZE=3>  int 0xff</FONT>
+<BR>
+<P><FONT SIZE=3><B>  10.4 inc(레지스터 또는 메모리 위치를 증가시킨다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  베이스 메모리 혹은 레지스터의 내용을 1 증가시킨다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  inc al</FONT>
+<P><FONT SIZE=3>  inc ax</FONT>
+<P><FONT SIZE=3>  inc byte _data</FONT>
+<P><FONT SIZE=3>  inc word _data</FONT>
+<BR>
+<P><FONT SIZE=3><B>  10.5 imul(부호있는 곱셈을 한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  바이트 데이터의 경우, al 레지스터에 1오퍼랜드를 곱하여 ax 레지스터에 넣는다.  데이터는     부호가 있다.  워드 데이터의 경우, ax 레지스터에 1오퍼랜드를 곱하여 dx : ax 레지스터에 넣    는다.  데이터는 부호있음이다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  imul bl</FONT>
+<P><FONT SIZE=3>  imul bx</FONT>
+<P><FONT SIZE=3>  imul si</FONT>
+<P><FONT SIZE=3>  imul byte _data</FONT>
+<P><FONT SIZE=3>  imul word _data</FONT>
+<BR>
+<P><FONT SIZE=3><B>  10.6 idiv(부호있는 나눗셈을 한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  바이트 데이터의 경우 ax 레지스터에 1오퍼랜드를 나누어 몫을 al, 나머지를 ah 레지스터에 넣    는다.  워드 데이터의 경우 dx : ax 에 1오퍼랜드를 나누어 몫을 ax, 나머지를 dx 레지스터에    넣는다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  idiv bl</FONT>
+<P><FONT SIZE=3>  idiv bx</FONT>
+<P><FONT SIZE=3>  idiv si</FONT>
+<P><FONT SIZE=3>  idiv byte _data</FONT>
+<P><FONT SIZE=3>  idiv word _data</FONT>
+<BR>
+<P><FONT SIZE=3><B>  10.7 in(입출력 포트로부터 al 혹은 ax 레지스터에 데이터를 받는다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  입출력 표트로부터 al 혹은 ax 레지스터에 데이터를 받는다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  in al,0</FONT>
+<P><FONT SIZE=3>  in al,!NULL</FONT>
+<P><FONT SIZE=3>  in ax,0xff</FONT>
+<P><FONT SIZE=3>  in ax,!NULL</FONT>
+<BR>
+<P><FONT SIZE=3>  in al,dx</FONT>
+<P><FONT SIZE=3>  in ax,dx</FONT>
+<BR>
+</HTML>

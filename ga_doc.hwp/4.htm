@@ -1,0 +1,143 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제4장 프로그램작성규칙</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 4 장 프로그램 작성 규칙(Program syntax)</FONT>
+<BR>
+<P><FONT SIZE=3>  GA는 표준 어셈블러와 호환이 안되는 기술적인 부분과, 문법적인 부분이 있는데 단일 세그먼     트, 어셈블 수식어, 베이스 메모리에서 번지의 사용, 변화된 문법, 수치의 직접 입력, 대·소    문자 인식 등이 있다.</FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.1 단일 세그먼트</B></FONT>
+<BR>
+<P><FONT SIZE=3>  GA는 다른 상업용 어셈블러가 지원하는 다중 세그먼트를 지원하지 않고 단일 세그먼트만을 지    원하며 생성되는 실행화일의 구조도 COM파일로 한정되고 프로그램 시작 주소를 반드시 '0x100'    으로 설정해야 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  +-- 번지를 0x100의로 지정하는 예 -+</FONT>
+<P><FONT SIZE=3>  |;Program </FONT>	<FONT SIZE=3>start               |</FONT>
+<P><FONT SIZE=3>  |</FONT>		<FONT SIZE=3>org</FONT>	<FONT SIZE=3>0x100       |</FONT>
+<P><FONT SIZE=3>  |                                 |</FONT>
+<P><FONT SIZE=3>  |</FONT>	<FONT SIZE=3>_start</FONT>	<FONT SIZE=3>mov</FONT>	<FONT SIZE=3>ah,9        |</FONT>
+<P><FONT SIZE=3>  |</FONT>		<FONT SIZE=3>mov</FONT>	<FONT SIZE=3>dx,&amp;stg     |</FONT>
+<P><FONT SIZE=3>  |</FONT>		<FONT SIZE=3>int</FONT>	<FONT SIZE=3>0x21        |</FONT>
+<P><FONT SIZE=3>  |                                 |</FONT>
+<P><FONT SIZE=3>  |</FONT>		<FONT SIZE=3>int</FONT>	<FONT SIZE=3>0x20        |</FONT>
+<P><FONT SIZE=3>  |                                 |</FONT>
+<P><FONT SIZE=3>  |_stg         db      "test$"     |</FONT>
+<P><FONT SIZE=3>  +---------------------------------+</FONT>
+<BR>
+<P><FONT SIZE=3>  +-- 참고  ----------------------------------------------------------------------------+</FONT>
+<P><FONT SIZE=3>  |위의 프로그램에서 'org'는 시스템 명령어로 프로그램의 번지를 강제로 지정하는 것으로 명|</FONT>
+<P><FONT SIZE=3>  |령으로 뒤에서 설명된다.                                                              |</FONT>
+<P><FONT SIZE=3>  +-------------------------------------------------------------------------------------+</FONT>
+<P><FONT SIZE=3>                                                                                         </FONT>
+<P><FONT SIZE=3>  <B>4.2 어셈블 수식어</B></FONT>
+<BR>
+<P><FONT SIZE=3>  어셈블 수식어로는 표준 어셈블러에서 제공하는 'byte','word','short','near','far'등이 있     다.  </FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.2.1 byte</B></FONT>
+<P><FONT SIZE=3>                                </FONT>
+<P><FONT SIZE=3>  'byte'수식어는 베이스 메모리의 타입을 byte로 설정한다.  GA는 데이터를 정의할 때 데이타입    을 기억하지 안기 때문에 베이스 메모리를 사용할 때는 반드시 사용해야 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  (예) mov al,byte _stg</FONT>
+<P><FONT SIZE=3>       mov byte _stg,ah</FONT>
+<P><FONT SIZE=3>       mov byte _stg,1</FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.2.2 word</B></FONT>
+<BR>
+<P><FONT SIZE=3>  'word'수식어는 베이스 메모리의 타입을 2바이트로 설정합니다.  GA는 데이터를 정의할 때 데    이터 타입을 기억하지 안기 때문에 베이스 메모리를 사용할 때는 반드시 사용해야 합니다.</FONT>
+<BR>
+<P><FONT SIZE=3>  (예) mov ax,word _stg</FONT>
+<P><FONT SIZE=3>       mov word _stg,ax</FONT>
+<P><FONT SIZE=3>       mov word _stg,1</FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.2.3 short</B></FONT>
+<BR>
+<P><FONT SIZE=3>  'short'수식어는 jump를 하는 명령어의 수식어이다.  거리는 +127-(-128)바이트를 넘지 안는     범위이고 생성되는 코드는 2바이트이며 번지 산출 의사 문자(&amp;)를 사용해야 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  (예) je short &amp;abc</FONT>
+<P><FONT SIZE=3>       jne short &amp;korea</FONT>
+<P><FONT SIZE=3>       jmp short &amp;hwp</FONT>
+<P><FONT SIZE=3>       loop short &amp;exit</FONT>
+<P><FONT SIZE=3>       </FONT>
+<P><FONT SIZE=3><B>  4.2.4 near</B></FONT>
+<BR>
+<P><FONT SIZE=3>  'near'수식어는 IP(Instruction Pointer : 명령 시작점)를 다시 세팅하여 jump하는 명령에서     사용된다.  'near'는 레이블 선언 의사 문자(_)와 번지 산출 의사 문자(&amp;)를 사용할 수 있다.    두 개의 차이점은 아래와 같다.</FONT>
+<BR>
+<P><FONT SIZE=3>  +- 레이블 선언 의사 문자와 번지 산출 의사 문자의 차이 ---------------------------------+</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  |     org  0x100                                                                       |</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  |</FONT>	<FONT SIZE=3>call near &amp;stg                                                                   |</FONT>
+<P><FONT SIZE=3>  |</FONT>	<FONT SIZE=3>call near _stg                                                                   |</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  |_stg dw   0xabcd                                                                      |</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  |레이블 'stg'는 'org'명령으로 번지는 '0x1234'이며 그 번지에 있는 값은 '0xabcd'이다.    |</FONT>
+<P><FONT SIZE=3>  |여기서 'call near &amp;stg'와 'call near _stg'는 다음과 같이 어셈블 된다.                 |</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  |     call near &amp;stg  --&gt;  call near 0x0107 : _stg로 call                              |</FONT>
+<P><FONT SIZE=3>  |     call near _stg  --&gt;  call near [0x0107] : _stg번지에 있는 '0xabcd'로 call        |</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  +--------------------------------------------------------------------------------------+</FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.2.5 far</B></FONT>
+<BR>
+<P><FONT SIZE=3>  'far'수식어는 CS(Code Segment)와 IP(Instruction Pointer)를 다시 세팅는 명령에서 사용된     다.  'far'는 두개의 오퍼랜드를 갖는 명령이나 베이스 메모리의 'far'선언시 사용된다.</FONT>
+<BR>
+<P><FONT SIZE=3>  (예) jmp far 0x1234,0xabcd</FONT>
+<P><FONT SIZE=3>       jmp far [bx]</FONT>
+<P><FONT SIZE=3>       call far _stg</FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.3 베이스 메모리에서 번지의 사용</B></FONT>
+<BR>
+<P><FONT SIZE=3>  베이스 메모리의 변위에 레이블의 번지를 수치처럼 나타낼수 있다.  레이블을 수치로 나타낼때    는 반드시 번지 산출 의사 문자(&amp;)를 사용해야 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  (예) mov ax,word [bx+&amp;stg]</FONT>
+<P><FONT SIZE=3>       mov byte [&amp;abc],ah</FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.4 변화된 문법</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.4.1 사라진 'ptr'수식어</B></FONT>
+<BR>
+<P><FONT SIZE=3>  기존의 어셈블러에서는 'offset ptr'을 사용하였지만 GA는 'offset'을 '&amp;'로 대채하고 'ptr'을 </FONT>
+<P><FONT SIZE=3>  배재하였다.</FONT>
+<BR>
+<P><FONT SIZE=3>  (예) mov ax,word &amp;stg</FONT>
+<P><FONT SIZE=3>       mov byte _abc,ah</FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.4.2 ':'문법의 변화</B></FONT>
+<BR>
+<P><FONT SIZE=3>  기존의 어셈블러에서는 far call을 할때 ':'으로 나타냈지만 GA에서는 2operand규칙을 준수하    여 2operand로 나타낸다.</FONT>
+<BR>
+<P><FONT SIZE=3>  (예) call far 0xabcd,0x1234</FONT>
+<BR>
+<P><FONT SIZE=3>  +-- 참고 -----------------------------------------------+</FONT>
+<P><FONT SIZE=3>  |어셈블리 언어는 다음과 같은 문법구조를 가지고 있습니다.|</FONT>
+<P><FONT SIZE=3>  |                                                       |</FONT>
+<P><FONT SIZE=3>  |opcode 1operand,2operand                               |</FONT>
+<P><FONT SIZE=3>  |                                                       |</FONT>
+<P><FONT SIZE=3>  |GA에서는 위의 규칙을 준수하여 모든 문법을 정하였습니다.|</FONT>
+<P><FONT SIZE=3>  +-------------------------------------------------------+</FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.4.3 수치의 직접입력</B></FONT>
+<BR>
+<P><FONT SIZE=3>  GA는 재배치를 하지안는 대신 수치를 직접입력 할수있다.</FONT>
+<BR>
+<P><FONT SIZE=3>  (예) je short 0x100</FONT>
+<P><FONT SIZE=3>       jne short 0x200</FONT>
+<P><FONT SIZE=3>       call near 0xabcd</FONT>
+<P><FONT SIZE=3>       call far 0x1234,0xabcd</FONT>
+<BR>
+<P><FONT SIZE=3><B>  4.5 대</B>·<B>소 문자 인식</B></FONT>
+<BR>
+<P><FONT SIZE=3>  GA는 대소문자를 인식하며 모든 명령어는 소문자로 작성되어야 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  (예) </FONT>	<FONT SIZE=3>ORG 0x100</FONT>
+<BR>
+<P><FONT SIZE=3>  위의 명령어를 어셈블하면 다음과 같은 오류 메시지가 표시됩니다.</FONT>
+<BR>
+<P><FONT SIZE=3>  Error : Not 8086/8087 operation code or system code</FONT>
+<BR>
+</HTML>

@@ -1,0 +1,118 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제7장 d?? 명령어</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 7 장 d?? 명령어</FONT>
+<BR>
+<P><FONT SIZE=3><B>  7.1 daa(덧셈을 한 후에 ax 레지스터에서 10진 변환을 한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  두 개의 BCD 수를 더한 후에만 사용하는 것으로, AF 플래그가 1이거나 al 레지스터의 하위 4     비트의 내용이 0x0a - 0x0f 이면 al 레지스터 내용에 0x06 를 더하고 AF 플래그를 1 로 한다.    만약 CF 플래그가 1 또는 al 레지스터의 상위 4 비트의 내용이 9보다 크면 al 레지스터의 내용    에 0x60를 더한 후 CF 플래그를 1로 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  daa</FONT>
+<BR>
+<P><FONT SIZE=3><B>  7.2 das(뺄샘을 한 후에 ax 레지스터에서 10진 변환을 한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능] </FONT>
+<P><FONT SIZE=3>  2 개의 BCD 수를 가지고 뺄샘한 후에만 사용되며, AF 플래그가 1 이거나 al 레지스터의 하위 4    비트가 0x0a - 0x0f 이면 al 레지스터의 내용에 0x06를 뺀 후 AF 플래그를 1로 하고, CF 플래    그가 1이거나 al 레지스터의 상위 4 비트 내용이 9 보다 크면 al 레지스터의 내용에서 0x60를    뺀 후 CF 플래그를 1로 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  das</FONT>
+<BR>
+<P><FONT SIZE=3><B>  7.3 ds:(데이타 참조 세그먼트를 DS 레지스터로 한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  데이타 참조 세그먼트 레지스터를 DS 로 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  ds:</FONT>
+<BR>
+<P><FONT SIZE=3><B>  7.4 dec(레지스터 혹은 메모리를 감소 시킨다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  베이스 메모리 혹은 레지스터의 내용을 하나 감소 시킨다.  세그먼트 레지스터는 안된다</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  dec ax</FONT>
+<P><FONT SIZE=3>  dec al</FONT>
+<P><FONT SIZE=3>  dec byte _data</FONT>
+<P><FONT SIZE=3>  dec word _data</FONT>
+<P><FONT SIZE=3>  </FONT>
+<P><FONT SIZE=3><B>  7.5 div(ah : al 혹은 dx : ax 레지스터를 레지스터 또는 메모리 위치로 나눈다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  이 명령어는 16비트 부호없는 수를 8 비트 부호없는 수로 나누거나, 32비트 부호없는 수를 16    비트 부호없는 수로 나누는 경우에 사용되며, 8 비트 연산인 경우, ax 레지스터의 내용을 베이    스메모리/레지스터로 지정한 위치의 내용으로 나눈 8비트 몫은 al 레지스터에 저장하고, 8 비    트 나머지는 ah 레지스터에 저장한 수, al 레지스터의 내용이 0xff 보다 크면 Type 0 인터럽트    가 발생한다.  16 비트 연산인 경우, 16비트 몫은 ax 레지스터에 저장되고, 16 비트 나머지는    dx 레지스터에 저장된다.  이 때, ax 레지스터에 저정된 몫이 0xffff 보다 크면 Type 0 인터럽    트가 발생한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  div bl</FONT>
+<P><FONT SIZE=3>  div bx</FONT>
+<P><FONT SIZE=3>  div si</FONT>
+<P><FONT SIZE=3>  div byte _data</FONT>
+<P><FONT SIZE=3>  div word _data</FONT>
+<BR>
+<P><FONT SIZE=3><B>  7.6 db(1바이트의 자료를 선언한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  바이트의 데이타를 선언한다.  이 명령어는 기계어로 변환되지 않고 어셈블러에게 지시만 지시    한다.  'db' 선언뒤에는 오직 1바이트의 자료만 선언할수 있다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  !NULL   0</FONT>
+<BR>
+<P><FONT SIZE=3>  _data db 0</FONT>
+<P><FONT SIZE=3>        db 0xff</FONT>
+<P><FONT SIZE=3>        db 0b11110000</FONT>
+<P><FONT SIZE=3>        db 'a'</FONT>
+<P><FONT SIZE=3>        db "b"</FONT>
+<P><FONT SIZE=3>        db '\r'</FONT>
+<P><FONT SIZE=3>        db "\n"</FONT>
+<P><FONT SIZE=3>        db !NULL</FONT>
+<BR>
+<P><FONT SIZE=3><B>  7.7 ds(문자열 자료를 선언한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  문자열 데이타를 선언한다.  GA 에서 문자열이란 3바이트 이상의 자료를 말한다.  이 명령어는    기계어로 변환되지 않고 어셈블러에게 지시만 한다.  2 이바이트 이하 자료선언시 오류를 표     시할 것이다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  _data ds 'abcd'</FONT>
+<P><FONT SIZE=3>        ds "abcd"</FONT>
+<P><FONT SIZE=3>        ds 'Korea\r\n'</FONT>
+<P><FONT SIZE=3>        ds "Korea\r\n"</FONT>
+<BR>
+<P><FONT SIZE=3><B>  7.8 du(확보형 자료를 선언한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  같은 종류의 자료를 확보한다.  문법은 'du' size,character 이다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  !ESC  8</FONT>
+<BR>
+<P><FONT SIZE=3>  _data du 10</FONT>
+<P><FONT SIZE=3>        du 0x10</FONT>
+<P><FONT SIZE=3>        du 0b00001000</FONT>
+<P><FONT SIZE=3>        du 10,'a'</FONT>
+<P><FONT SIZE=3>        du 10,'b'</FONT>
+<P><FONT SIZE=3>        du 10,!ESC</FONT>
+<BR>
+<P><FONT SIZE=3><B>  7.9 dw(2바이트 자료를 선언한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  2 바이트 데이타를 선언한다.  이 명령어는 기계어로 변환되지 않고 어셈블러에게 지시만 지시    한다.  'dw' 선언뒤에는 오직 2 바이트의 자료만 선언할수 있다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  !NULL   0</FONT>
+<BR>
+<P><FONT SIZE=3>  _data dw 0</FONT>
+<P><FONT SIZE=3>        dw 0xffff</FONT>
+<P><FONT SIZE=3>        dw 0b11110000</FONT>
+<P><FONT SIZE=3>        dw 'ab'</FONT>
+<P><FONT SIZE=3>        dw "bc"</FONT>
+<P><FONT SIZE=3>        dw '\r\n'</FONT>
+<P><FONT SIZE=3>        dw "\n\r"</FONT>
+<P><FONT SIZE=3>        dw !NULL</FONT>
+<BR>
+</HTML>

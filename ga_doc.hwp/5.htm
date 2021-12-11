@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제5장 a?? 명령어</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 5 장 a?? 명령어</FONT>
+<BR>
+<P><FONT SIZE=3>  <B>5.1 aaa(ASCII 덧셈의 결과를 조정한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3>  [기능]</FONT>
+<P><FONT SIZE=3>  al 레지스터의 하위 4비트의 내용이 0-9 사이에 있으면 AF 플래그를 0 으로 하고, al 레지       스터의 상위 4 비트는 0 으로 한다.  만약 al 레지스터의 하위 4 비트의 내용이 0x0a - 0x0f     이거나 AF 플래그가 1 이면 al 레지스터의 내용에 6 을 더하고 ah 레지스터의 내용에 1 을 더    한후 AF 플래그를 1 로 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  aaa</FONT>
+<BR>
+<P><FONT SIZE=3><B>  5.2 aad(나눗셈을 위해 ax 레지스터를 조정한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  ah 레지스터와 al 레지스터에 언팩된 BCD 오퍼랜드가 들어 있을 경우, ah 레지스터의 내용에     0x0a 를 곱하고 ah 레지스터와 al 레지스터의 내용을 다한며 ah 레지스터에 0x00 를 저장한다.</FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[사용예]</FONT>
+<P><FONT SIZE=3>  aad</FONT>
+<P><FONT SIZE=3><B>  </B></FONT>
+<P><FONT SIZE=3><B>  5.3 aam(BCD 수 곱셈의 결과를 조정한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  두 개의 언팩(unpack) BCD 수를 곱셈한 후, al 레지스터를 0x0a 로 나누어 ah 레지스터에 몫을    저장하고 나머지는 al 레지스터에 저장한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  aam</FONT>
+<BR>
+<P><FONT SIZE=3><B>  5.4 aas(ASCII 값 뺄셈의 결과를 조정한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  오퍼랜드로 2 개의 ASCII 문자를 뺀 후, al 레지스터의 하위 4 비트의 내용이 0-9 이고 AF 플    래그가 0 이면, al 레지스터의 상위 4 비트가 내용을 0 으로 하고, al 레지스터의 하위 4 비트    내용이 0x0a-0x0f 이거나 AF 플래그가 1 이면 al 레지스터의 내용에서 6 을 뺀 후 ah 레지스터    의 내용에서 1 을 빼고 AF 플래그를 1로 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  aas</FONT>
+<BR>
+<P><FONT SIZE=3><B>  5.5 adc(캐리를 고려한 덧셈)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  1오퍼랜드,2오퍼랜드와 캐리플래그의 값을 더하여 1오퍼랜드에 저장한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  adc ax,bx</FONT>
+<P><FONT SIZE=3>  adc ah,bh</FONT>
+<P><FONT SIZE=3>  adc word _a,ax</FONT>
+<P><FONT SIZE=3>  adc ax,word _a</FONT>
+<P><FONT SIZE=3>  adc byte _a,al</FONT>
+<P><FONT SIZE=3>  adc al,byte _a</FONT>
+<P><FONT SIZE=3>  adc ax,1</FONT>
+<P><FONT SIZE=3>  adc word _a,1</FONT>
+<P><FONT SIZE=3>  adc byte _a,1</FONT>
+<BR>
+<P><FONT SIZE=3><B>  5.6 add(캐리를 고려하지 않은 덧셈)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  1오퍼랜드와 2오퍼랜드를 더하여 1오퍼랜드에 저장한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  add ax,bx</FONT>
+<P><FONT SIZE=3>  add ah,bh</FONT>
+<P><FONT SIZE=3>  add word _a,ax</FONT>
+<P><FONT SIZE=3>  add ax,word _a</FONT>
+<P><FONT SIZE=3>  add byte _a,al</FONT>
+<P><FONT SIZE=3>  add al,byte _a</FONT>
+<P><FONT SIZE=3>  add ax,1</FONT>
+<P><FONT SIZE=3>  add word _a,1</FONT>
+<P><FONT SIZE=3>  add byte _a,1</FONT>
+<BR>
+<P><FONT SIZE=3><B>  5.7 and(수치 데이터와 레지스터 또는 메모리 위치를 AND연산한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  8비트 또는 16비트 연산을 하며, 베이스 메모리/레지스터로 지정한 메모리 위치 또는 레지스터    와 데이터를 비트 단위로 AND하여 베이스 메모리/레지스터로 지정한 위치에 저장한다.</FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[사용예]</FONT>
+<P><FONT SIZE=3>  and ax,bx</FONT>
+<P><FONT SIZE=3>  and ah,bh</FONT>
+<P><FONT SIZE=3>  and word _a,ax</FONT>
+<P><FONT SIZE=3>  and ax,word _a</FONT>
+<P><FONT SIZE=3>  and byte _a,al</FONT>
+<P><FONT SIZE=3>  and al,byte _a</FONT>
+<P><FONT SIZE=3>  and ax,1</FONT>
+<P><FONT SIZE=3>  and word _a,1</FONT>
+<P><FONT SIZE=3>  and byte _a,1</FONT>
+<BR>
+</HTML>

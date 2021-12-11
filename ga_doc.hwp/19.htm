@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제19장 t??? 명령어</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 19 장 t??? 명령어</FONT>
+<BR>
+<P><FONT SIZE=3><B>  19.1 test(AND 값을 플래그에 반영한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  비트 테스트(bit test)는 연산인 결과를 플래그에만 살리고 싶을 때 사용한다.  예들 들어, al    레지스터의 값이 0x30일 때 분기하고 싶을 경우, sub al, 0x30 에서 al의 값이 0인지 아닌지를    보면 0x30인지 아닌지 알 수 있다.  그러나 오리지널 al 의 값 -0x30를 하고 있기 때문에 al     값이 변하고 있다.  이러한 때 cmp al,0x30을 하며 al 레지스터의 값을 바꾸지 않고 플래그만    의 변화로 al=0x30인지 아닌지의 판정을 할 수 있다.  마찬가지로 test명령은 test 오퍼랜드1,    오퍼랜드 2의 형태로 오퍼랜드 1과 오퍼랜드 2의 and 를 취해 결과를 플래그에 반영하고, 오퍼    랜드 1및 오퍼랜드2의 값은 변하지 않는다.  test 에서는 특정의 비트가 0인지 1인지를 판정할    수 있다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  test ax,bx</FONT>
+<P><FONT SIZE=3>  test ah,bh</FONT>
+<P><FONT SIZE=3>  test word _a,ax</FONT>
+<P><FONT SIZE=3>  test ax,word _a</FONT>
+<P><FONT SIZE=3>  test byte _a,al</FONT>
+<P><FONT SIZE=3>  test al,byte _a</FONT>
+<P><FONT SIZE=3>  test ax,1</FONT>
+<P><FONT SIZE=3>  test word _a,1</FONT>
+<P><FONT SIZE=3>  test byte _a,1</FONT>
+<BR>
+</HTML>

@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제6장 c???? 명령어</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 6 장 c???? 명령어</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.1 cbw(al 레지스터의 부호를 ah 레지스터에 16 진수로 저장한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3>  [기능]</FONT>
+<P><FONT SIZE=3>  al 레지스터의 비트 7 의 내용이 1 이면 ah 레지스터에 0xff 를 저장하고, al 레지스터의 비트    7 의 내용이 0 이면 ah 레지스터에 0 을 저장한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  cbw</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.2 clc(캐리 플래그를 클리어시켜 준다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  캐리 플래그가 1 이면 0 으로 클리어 시켜준다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  clc</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.3 cld(디랙션 플래그를 클리어한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  디랙션 플래그를 0 으로 변환시킨다.  이것은 스트링 연산이 스트링 연산에 의해 사용되는 포    인터상에 자동 증가를 행하는것과 같은 효과가 있다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  cld</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.4 cli(인터럽트가 걸리는 것을 막아 준다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  인터럽트 플래그를 설정한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  cli</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.5 cmc(캐리 플래그를 반전시킨다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  캐리 플래그를 원래의 상태로 바꾸어 놓는다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  cmc</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.6 cmpsb(메모리와 메모리를 바이트대 바이트로 비교한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  SI 레지스터에 의해 지정된 메모리의 내용과 DI 레지스터에 의해 지정된 메모리 위치의 내용을    비교하는 것으로, DI 레지스터에 으해 지정된 메로리의 내용에서 SI 레지스터에 의해 지정된     메모리 위치의 내용을 뺀 결과에 따라 플래그 레지스터에 변화를 주고, 이때 SI 와 DI 는 방향    플래그의 내용에 따라 증가한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  cmpsb</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.7 cmpsw(메모리와 메모리를 워드대 워드로 비교한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  데이타를 워드로 비교하고 기능은 cmpab와 같음</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  cmpsw</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.8 cs:(데이타 참조를 CS 레지스터로 한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  데이타 참조를 DS 레지스터에서 CS 레지스터로 변경한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  cs:</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.9 cwd(ax 레지스터의 부호를 dx 레지스터에 16 진수로 저장한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  ax 레지스터의 비트 15 의 내용이 1 인 경우 dx 레지스터에 0xffff 를 저장 시키고, ax 레지스    터의 비트 15 내용이 0 인 경우 dx 레지스터에 0x0000 를 저장시킨다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  cwd</FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.10 call(서브 루틴을 호출한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  지정된 번지로 near call 혹은 far call을 한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3><B>  </B>call near &amp;start       ; start레이블 번지로 call</FONT>
+<P><FONT SIZE=3>  call</FONT>	<FONT SIZE=3>near ax          ; ax 레지스터의 값으로 call</FONT>
+<BR>
+<P><FONT SIZE=3>  call</FONT>	<FONT SIZE=3>near [bx]        ; 베이스 메모리 [bx] 으로 call</FONT>
+<BR>
+<P><FONT SIZE=3>  call</FONT>	<FONT SIZE=3>near [&amp;start]    ; start 번지의 내용을 변위로  call ---+ 같은 코드</FONT>
+<P><FONT SIZE=3>  call</FONT>	<FONT SIZE=3>near _start      ; start 번지의 내용으로 call       ---+</FONT>
+<BR>
+<P><FONT SIZE=3>  call far 0x1234,0xabcd ; 0x1234:0xabcd로 call</FONT>
+<P><FONT SIZE=3>  call far [bx]          ; 베이스 메모리 [bx]를 far call </FONT>
+<BR>
+<P><FONT SIZE=3><B>  6.11 cmp(데이터의 비교)</B></FONT>
+<BR>
+<P><FONT SIZE=3>  [기능]</FONT>
+<P><FONT SIZE=3>  1오퍼랜드와 2오퍼랜드를 비교하여 플래그를 변화시킨다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  cmp ax,bx</FONT>
+<P><FONT SIZE=3>  cmp ah,bh</FONT>
+<P><FONT SIZE=3>  cmp word _a,ax</FONT>
+<P><FONT SIZE=3>  cmp ax,word _a</FONT>
+<P><FONT SIZE=3>  cmp byte _a,al</FONT>
+<P><FONT SIZE=3>  cmp al,byte _a</FONT>
+<P><FONT SIZE=3>  cmp ax,1</FONT>
+<P><FONT SIZE=3>  cmp word _a,1</FONT>
+<P><FONT SIZE=3>  cmp byte _a,1</FONT>
+<BR>
+</HTML>

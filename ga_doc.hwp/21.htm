@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제21장 x??? 명령어</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 21 장 x??? 명령어</FONT>
+<BR>
+<P><FONT SIZE=3><B>  21.1 xlat(테이블 참조를 한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  bx 에 의해 간저지정된 번지로부터 al 바이트째의 데이터를 al 로 전송한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  xlat</FONT>
+<BR>
+<P><FONT SIZE=3><B>  21.2 xchg(1오퍼랜드와 2오퍼랜드의 내용을 바꾼다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  1오퍼랜드와 2오퍼랜드의 내용을 바꾼다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  xchg ax,bx</FONT>
+<P><FONT SIZE=3>  xchg ah,bh</FONT>
+<P><FONT SIZE=3>  xchg word _a,ax</FONT>
+<P><FONT SIZE=3>  xchg ax,word _a</FONT>
+<P><FONT SIZE=3>  xchg byte _a,al</FONT>
+<P><FONT SIZE=3>  xchg al,byte _a</FONT>
+<P><FONT SIZE=3>  xchg ax,1</FONT>
+<P><FONT SIZE=3>  xchg word _a,1</FONT>
+<P><FONT SIZE=3>  xchg byte _a,1</FONT>
+<BR>
+<P><FONT SIZE=3><B>  21.3 xor(1오퍼랜드와 2오퍼랜드를 베타적 OR를 한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  al(8비트 연산)또는 ax(16비트 연산)의 내용과 데이터 내용을 xor 시킨 결과를 al 또는 ax 에    저장시킨다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  xor ax,bx</FONT>
+<P><FONT SIZE=3>  xor ah,bh</FONT>
+<P><FONT SIZE=3>  xor word _a,ax</FONT>
+<P><FONT SIZE=3>  xor ax,word _a</FONT>
+<P><FONT SIZE=3>  xor byte _a,al</FONT>
+<P><FONT SIZE=3>  xor al,byte _a</FONT>
+<P><FONT SIZE=3>  xor ax,1</FONT>
+<P><FONT SIZE=3>  xor word _a,1</FONT>
+<P><FONT SIZE=3>  xor byte _a,1</FONT>
+<BR>
+</HTML>

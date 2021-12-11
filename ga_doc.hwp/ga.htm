@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제1장 GA소개</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 1 장 GoldFish Assembler</FONT>
+<BR>
+<P><FONT SIZE=3>  <B>1.1 GA의 개발 과정</B></FONT>
+<BR>
+<P><FONT SIZE=3>  GA(GoldFish Assembler version 1.1)의 개발 과정은 아래와 같다.</FONT>
+<P><FONT SIZE=3>  </FONT>
+<P><FONT SIZE=3>  +-- 개발 과정  -------------------------------------------------------+</FONT>
+<P><FONT SIZE=3>  | TU1(Tiny Unassembler test version 1994년 5월)                       |</FONT>
+<P><FONT SIZE=3>  |  |                                                                  |</FONT>
+<P><FONT SIZE=3>  |  +--→ TA1(Tiny Assembler test version 1994년 9월)                  |</FONT>
+<P><FONT SIZE=3>  |         |                                                           |</FONT>
+<P><FONT SIZE=3>  |         +--→ GA10(GoldFish Assembler version 1.0 1995년 8월)       |</FONT>
+<P><FONT SIZE=3>  |                |                                                    |</FONT>
+<P><FONT SIZE=3>  |                +--→ GA(GoldFish Assembler version 1.1 1995년 9월)  |</FONT>
+<P><FONT SIZE=3>  +---------------------------------------------------------------------+</FONT>
+<BR>
+<P><FONT SIZE=3><B>  1.1.1 TU1(Tiny Unassembler test version)</B></FONT>
+<P><FONT SIZE=3>  </FONT>
+<P><FONT SIZE=3>  TU1은 Intel 0x8086코드 구성 자료를 수집하면서 만들어 본 disassembler이다.  단일 세그먼     트를 사용하며 재배치를 하지 안는 COM(확장자가 COM인 파일)파일을 기준으로 만들었다.  파일    에 포함되어 있는 기계어를 표준 어셈블 형식에 따라 화면 혹은 리스트 파일에 출력할 수        있다.</FONT>
+<BR>
+<P><FONT SIZE=3><B>  1.1.2 TA1(Tiny Assembler test version)</B></FONT>
+<BR>
+<P><FONT SIZE=3>  TA1은 MS-DOS에서 재공하는 프로그램 역추적기(DEBUG.EXE)의 -a옵션과 같은 동작을 한다.        수집된 자료를 바탕으로 좀더 자료를 보강하면서 표준 어셈블러 형식으로 입력되게 만들었다.    각각의 어셈블러 명령들은 순차 적의로 한 줄씩 입력하고 마지막 줄에서 Enter를 입력하면 어    셈블된 기계어를 사용자가 정의한 파일에 기록하며 전에 파일이 있으면 Overwrite된다.</FONT>
+<BR>
+<P><FONT SIZE=3>  +-- 참고 ------------------------------------------------------------------------+</FONT>
+<P><FONT SIZE=3>  |DEBUG.EXE를 실행하면 DEBUG.EXE의 프롬프트가 나오는데 거기서 '?'(물음표)를 입력하|</FONT>
+<P><FONT SIZE=3>  |고 Enter를 입력하면 -a(Assemble)옵션과 다른 옵션의 정보를 볼 수 있다.           |</FONT>
+<P><FONT SIZE=3>  +--------------------------------------------------------------------------------+</FONT>
+<BR>
+<P><FONT SIZE=3><B>  1.1.3 GA10(GoldFish Assembler version 1.0)</B></FONT>
+<BR>
+<P><FONT SIZE=3>  GA10은 텍스트 에디터(Text Editor)로 작성된 파일을 입력으로 설계되었다.  이 버전부터 어셈    블 표준 코딩 법을 따르지 안고 조금 다른 문법으로 코딩하도록 설계하였다.  따라서 이 버전    부터는 표준 어셈블러와 호환이 안된다.</FONT>
+<BR>
+<P><FONT SIZE=3><B>  1.1.4 GA(GoldFish Assembler version 1.1)</B></FONT>
+<P><FONT SIZE=3>  </FONT>
+<P><FONT SIZE=3>  GA는 GA10에서 베이스 메모리 코딩시 발생되는 문제를 해결했다. 모든 사항은 GA10과 같고       베이스 메모리에 대한 기계어코드가 같지 안다.</FONT>
+<BR>
+<BR>
+<P><FONT SIZE=3>  +-- 참고 ------------------------------------------------------------------------------+</FONT>
+<P><FONT SIZE=3>  |어셈블러는 아래와 같이 구분할수 있다.                                                 |</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  |핸드 어셈블러(Hand Assembler)                                                         |</FONT>
+<P><FONT SIZE=3>  |사람이 하나하나 손으로 어셈블하는 것으로 코드의 어셈블및 번지의 계산을 사람이 직접 한 |</FONT>
+<P><FONT SIZE=3>  |다.                                                                                   |</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  |인 라인 어셈블러(In Line Assembler)                                                   |</FONT>
+<P><FONT SIZE=3>  |한줄 한줄 어셈블하는 것으로 사람이 어셈블을 직접하지 않지만 번지의 계산은 사람이 한다.|</FONT>
+<P><FONT SIZE=3>  |(MS-DOS의 DEBUG.EXE와 TA가 여기에 해당된다.)                                          |</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  |2패스 어셈블러(2pass Assembler)                                                       |</FONT>
+<P><FONT SIZE=3>  |작성된 어셈블 소스파일을 어셈블한다.  코드의 어셈블및 레이블을 사용하여 어셈블 한다.  |</FONT>
+<P><FONT SIZE=3>  |(GA가 해당된다.)                                                                      |</FONT>
+<P><FONT SIZE=3>  |                                                                                      |</FONT>
+<P><FONT SIZE=3>  |매크로 어셈블러(Macro Assembler)                                                      |</FONT>
+<P><FONT SIZE=3>  |매크로 확장을 처리하여 주는 어셈블러 이다.(Microsoft사의 MASM이나 Bolrand사의 TASM 이 |</FONT>
+<P><FONT SIZE=3>  |해당된다.)                                                                            |</FONT>
+<P><FONT SIZE=3>  +--------------------------------------------------------------------------------------+</FONT>
+<BR>
+</HTML>

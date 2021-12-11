@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제15장 o?? 명령어</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 15 장 o?? 명령어</FONT>
+<BR>
+<P><FONT SIZE=3><B>  15.1 org(프로그램 번지를 세팅한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  GA는 *.COM 형식의 실행화일을 출력한다.  여기서 실행화일은 PSP(Program Segment Prefix) 다    음에 위치하게 된다.  여기서 소스화일의 시작번지를 0x100번지로 마추어야 한다.  *.COM 형식    의 실행화일은 시작번지의 제약이 있다.  'org'명령은 어셈블러에게 지시해주는 명령으로 org    다음에 수치를 지정한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  org 0x100</FONT>
+<P><FONT SIZE=3>  org !START_add</FONT>
+<BR>
+<P><FONT SIZE=3><B>  15.2 or(OR 명령을 한다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  al(8 비트 연산인 경우) 또는 ax (16비트 연산인 경우) 레지스터의 내용과 데이터를 비트별로    OR 시켜, 결과를 al 또는 ax 에 저장한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  or ax,bx</FONT>
+<P><FONT SIZE=3>  or ah,bh</FONT>
+<P><FONT SIZE=3>  or word _a,ax</FONT>
+<P><FONT SIZE=3>  or ax,word _a</FONT>
+<P><FONT SIZE=3>  or byte _a,al</FONT>
+<P><FONT SIZE=3>  or al,byte _a</FONT>
+<P><FONT SIZE=3>  or ax,1</FONT>
+<P><FONT SIZE=3>  or word _a,1</FONT>
+<P><FONT SIZE=3>  or byte _a,1</FONT>
+<BR>
+<P><FONT SIZE=3><B>  15.3 out(입출력 포트에 데이터를 보&#37000;다)</B></FONT>
+<BR>
+<P><FONT SIZE=3><B>  </B>[기능]</FONT>
+<P><FONT SIZE=3>  입출력 포트에 데이터를 보낸다.</FONT>
+<BR>
+<P><FONT SIZE=3>  [사용예]</FONT>
+<P><FONT SIZE=3>  out 0,al</FONT>
+<P><FONT SIZE=3>  out !NULL,al</FONT>
+<P><FONT SIZE=3>  out 0xff,ax</FONT>
+<P><FONT SIZE=3>  out !NULL,ax</FONT>
+<BR>
+<P><FONT SIZE=3>  out dx,al</FONT>
+<P><FONT SIZE=3>  out dx,ax</FONT>
+<BR>
+</HTML>

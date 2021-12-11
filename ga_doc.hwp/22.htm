@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" CONTENT="HTML document by Hwpw 96">
+<TITLE>제22장 GA 시스템</TITLE>
+</HEAD>
+
+<A NAME="[문서의 처음]">
+
+<P><FONT SIZE=5> 제 22 장 GA 시스템</FONT>
+<BR>
+<P><FONT SIZE=3>  <B>22.1 시스템의 구조</B></FONT>
+<BR>
+<P><FONT SIZE=3>  GA 어셈블러 시스템의 구조는 다음과 같다.</FONT>
+<BR>
+<P><FONT SIZE=3>  +--------+</FONT>
+<P><FONT SIZE=3>  | 초기화 |</FONT>
+<P><FONT SIZE=3>  +---+----+  +---------+</FONT>
+<P><FONT SIZE=3>      +-------+ 1 PASS  |</FONT>
+<P><FONT SIZE=3>              +----+----+  +--------+</FONT>
+<P><FONT SIZE=3>                   +-------+ 2 PASS |</FONT>
+<P><FONT SIZE=3>                           +---+----+  +-------+</FONT>
+<P><FONT SIZE=3>                               +-------+  종료 |</FONT>
+<P><FONT SIZE=3>                                       +-------+</FONT>
+<BR>
+<P>	<FONT SIZE=3>&lt; GA 어셈블러의 전체 흐름도 &gt;</FONT>
+<BR>
+<P><FONT SIZE=3>  초기화 부분에서는 어셈블러가 작업할 화일의 오픈과 메모리 할당 그리고 옵션의 설정을 하고    1 PASS에서는 소스화일의 구문분석과 중간화일 생성 그리고 리스트 화일을(선택적) 생성한다.    2 PASS에서는 중간화일을 분석하여 기계어를 생성하고 종료에서는 화일을 닫고 메모리를 해제    한다.</FONT>
+<BR>
+<P><FONT SIZE=3>  GA 시스템 --+- 초기화 --+- 화일 오픈(file open)</FONT>
+<P><FONT SIZE=3>              |           +- 메모리 할당(memory alloc)</FONT>
+<P><FONT SIZE=3>              |           +- 옵션의 설정(option set)</FONT>
+<P><FONT SIZE=3>              |</FONT>
+<P><FONT SIZE=3>              +- 1 PASS --+- 구문 분석(struction alanyer)</FONT>
+<P><FONT SIZE=3>              |           +- 중간화일 생성(out)</FONT>
+<P><FONT SIZE=3>              |           +- 리스트 화일 생성(선택적)(list file out)</FONT>
+<P><FONT SIZE=3>              |</FONT>
+<P><FONT SIZE=3>              +- 2 PASS --+- 중간화일 분석</FONT>
+<P><FONT SIZE=3>              |           +- 기계어 생성</FONT>
+<P><FONT SIZE=3>              |</FONT>
+<P><FONT SIZE=3>              +- 종료 ----+- 화일 클로즈</FONT>
+<P><FONT SIZE=3>                          +- 메모리 해제</FONT>
+<BR>
+<BR>
+</HTML>
